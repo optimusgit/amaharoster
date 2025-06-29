@@ -21,3 +21,12 @@ export interface Provider {
     }[];
   }[];
 }
+
+export interface Availability {
+  online_slots: string[];
+  offline_slots: string[];
+  both_slots: string[];
+  blocked_slots: { slot: string; reason: string }[];
+  online_booked_slots: string[];
+  offline_booked_slots: string[];
+}

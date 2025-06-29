@@ -2,6 +2,7 @@ import React from "react";
 import { Provider } from "../types";
 import Link from "next/link";
 import { morningSlots, afternoonSlots } from "@/utils/slotConfig";
+import { Availability } from "@/types";
 
 interface ProviderCardProps {
   provider: Provider;
@@ -12,8 +13,16 @@ export default function ProviderCard({ provider, onClick }: ProviderCardProps) {
   const { id, name, image, is_inhouse, clinic_details, provider_usertype } =
     provider;
 
+ 
   const renderSlotGrid = () => {
-    const avail = provider.availabilities?.[0] || {};
+    const avail: Availability = provider.availabilities?.[0] || {
+    online_slots: [],
+    offline_slots: [],
+    both_slots: [],
+    blocked_slots: [],
+    online_booked_slots: [],
+    offline_booked_slots: [],
+  };
     const allSlots = [...morningSlots, ...afternoonSlots];
 
     return (
